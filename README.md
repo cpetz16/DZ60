@@ -3,7 +3,7 @@ The files in this repository can be used to configure a keyboard with a DZ60 PCB
 
 For the complete layout and different layers on my layout, view the README that is located in the cpetz16 folder.
 
-**A full guide on all things QMK (as well as all documentation) can be found on [here](https://github.com/qmk/qmk_toolbox/releases)**
+**A full guide on all things QMK (as well as all documentation) can be found on [here](https://beta.docs.qmk.fm/)**
 
 ```
  ,-----------------------------------------------------------------------------------------.
@@ -13,9 +13,9 @@ For the complete layout and different layers on my layout, view the README that 
  |-----------------------------------------------------------------------------------------+
  | Caps    |  A  |  S  |  D  |  F  |  G  |  H  |  J  |  K  |  L  |  ;  |  '  |    Enter    |
  |-----------------------------------------------------------------------------------------+
- | Shift     |  Z  |  X  |  C  |  V  |  B  |  N  |  M  |  ,  |  .  |  /  | FN1 |  U  | TASK|
+ | Shift     |  Z  |  X  |  C  |  V  |  B  |  N  |  M  |  ,  |  .  |  /  |Shift|  U  | DEL |
  |-----------------------------------------------------------------------------------------+
- | Ctrl |  Cmd  |  Alt  |              Space                | Menu | FN2 |  L  |  D  |  R  |
+ | Ctrl |  Cmd  |  Alt  |              Space                | Menu | FN1 |  L  |  D  |  R  |
  `-----------------------------------------------------------------------------------------'
 ```
 
@@ -27,7 +27,7 @@ There are 2 ways to use the files in this repository in order to flash a keyboar
 
 The online graphical configurator is extremely easy to use and ideal for those who are just looking to design simple keymaps and flash them to their board. Creating a local build environment and cloning the GitHub repository allows for greater levels of customization and control.
 
-### QMK Configurator (Online GUI)
+### Method 1: QMK Configurator (Online GUI)
 ---
 A good tutorial for using this tool can be found on YouTube by [MechMerlin](https://www.youtube.com/watch?v=tx54jkRC9ZY)
 
@@ -49,19 +49,59 @@ Click the Flash button on the top right side of the program, making sure to put 
 
 After the flashing is completed, your keyboard should be all set and ready to use. A good way to test and make sure everything works is to used a [Keyboard Tester](https://config.qmk.fm/#/test).
 
-### Cloning the GitHub Repository
+### Setting up a Local Build Environment
 ---
 A good tutorial series for this process can be found on YouTube by [Chokkan](https://www.youtube.com/watch?v=-HLV6mUxNnU&list=PLYEUsdlqPD2a3kzQgnF98Prj-4IzZJGYG)
 
-1. Fork the [QMK repository](https://github.com/qmk/qmk_firmware) and clone it to your local machine
-2. Go to the keyboards folder --> dz60 --> keymaps
-3. Clone the cpetz16 folder in this repository and add it to the keymaps folder
-4. The folder contains 3 files:
+Before cloning the QMK GitHub repository and setting up a layout, a build environment must be created. To do so, first download [MSYS2](https://www.msys2.org/). From there you need to run a few commands to set up an appropriate environment for building and flashing hex files to your keyboard. To do so, once MSYS2 is launched, run the following commands (commands are case sensitive):
+
+- `pacman -Syu` (then 'y' to continue when prompted) after it completes, close MSYS2 and reopen it.
+- `pacman -Su` (then 'y' to continue when prompted) it's worth doing another restart of MSYS2 at this point
+
+Now, fork the [QMK repository](https://github.com/qmk/qmk_firmware) and clone it to your local machine. To keep things simple, I cloned the folder to my desktop, but you can put it wherever you want.
+
+In MSYS2, navigate to the folder you cloned, which should be titled `qmk_firmware` (this can be done by typing cd for change directory followed by the path to the `qmk_firmware` folder) In my case the command would be: ` cd C:/Users/cpetz16/Desktop/qmk_firmware`
+
+*IMPORTANT: On Windows, the default paths use "\" but in order to navigate to the appropriate directory you need to use "/"*
+
+After navigating to the QMK folder, we need to run a few more commands:
+
+- `util/msys2_install.sh` (When prompted, just use the default installation settings, so 'Enter', 'Enter', 'y', 'A', 'y', 'y', 'y')
+
+### Setting Up the Keymap Layout
+---
+1. Go to the keyboards folder --> dz60 --> keymaps
+2. Clone the cpetz16 folder in this repository and add it to the keymaps folder
+3. The folder contains 3 files:
     - `keymap.c` which is where the layouts are defined
     - `rules.mk` which is used to define build options at the time the code is compiled
     - `README.md` is for giving an overview of the keyboard layout as well as any addtional information
 
-    *The Rules and README files are optional and not required to build your layout and flash it to your keyboard* 
+    *The Rules and README files are optional and not required to build your layout and flash it to your keyboard*
+
+### Creating Your Own Layout
+---
+You can also create your own layout or modify the layout above if it doesn't suit your needs. To do so, all you have to do is change the keycodes defined in the `keymap.c` file with the ones you prefer. All of the keycodes are listed in QMK's [documentation](https://beta.docs.qmk.fm/reference/keycodes).
+
+To add function layers the keycode is `MO()` 
+
+You can also chain keys together to create actions that only require a single key press. For example: `LCTL(LALT(KC_DEL))` chains DELETE + Left ALT + Left CONTROL in order to open the task manager by only pressing one key.
+
+### Building and Flashing the Keymap to Your Keyboard
+---
+While inside the `qmk_firmware` folder in MSYS2 use the following command to build the .hex file for your keyboard
+
+    make dz60:cpetz16
+
+Alternatively, if you named the folder for your layout differently, use that name instead. If your layout is formatted correctly, it will build without any errors.
+
+To build and flash the keyboard all in one single command, instead use:
+
+    make dz60:cpetz16:dfu
+
+In order to flash the .hex file, you have to put your keyboard into RESET mode. On the DZ60 PCB, this can be done by holding `Spacebar` + `B`
+
+After the keyboard is done being flashed, it should be all set and ready to use with your desired layout. If you decide to make any changes, just edit the keymap.c file and re-build and flash it.
 
 ## Troubleshooting
 ---
