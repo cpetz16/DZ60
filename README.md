@@ -35,7 +35,7 @@ There are two ways to use the [Configurator](https://config.qmk.fm/#/dz60/LAYOUT
 1. Click keys on the virtual keymap, then drag from the keycodes below to the desired location on the keymap (or click a key on the keymap and press the desired key on your keyboard)
 2. Import a .json file with an already created keymap (the import button is to the right of the green KEYMAP. JSON box)
 
-In this repository is a .json file titled `dz60_directional.json` that can be imported and already contains the layered keymap I use. Simply download the .json file, and then in QMK Configurator import it.
+In this repository is a .json file titled `dz60_revised.json` that can be imported and already contains the layered keymap I use. Simply download the .json file, and then in QMK Configurator import it.
 
 ## Flashing Your Keymap to Your Keyboard
 
@@ -120,4 +120,5 @@ rather than constantly trying to unplug and plug the keyboard in, if you have al
 The intention of this repository is to be used as a reference for QMK as well as a centralized location containing references to various aspects of the process. I have written out this guide as a reminder for any future keyboard projects I undertake, as the general guidelines above can be applied to any other QMK-based keyboard. If you have any suggestions about improvements or edits to make to this guide, feel free to let me know. I will periodically review these contents whenever making any changes to my current keyboard or if I purchase another keyboard in the future.
 
 Guide Version: 1
+
 Last Revised: 7/22/2019

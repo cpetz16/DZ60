@@ -11,30 +11,12 @@ Keyboard specs:
 
 *All parts with the exception of keycaps can be found on KBDFans website*
 
-To build:
-
-    make dz60:cpetz16
-
-To build and flash:
-
-    make dz60:cpetz16:dfu
-
-**IMPORTANT**
-
-In order to flash the HEX file onto the keyboard, launch the build and flash command above, then hold `spacebar` + `b` to put the keyboard into RESET mode *or* use the predefined RESET key. If you get an error when trying to flash, such as
-
-    Error: Bootloader not found. Trying again in 5s.
-
-press the RESET key again at this point. The HEX file will then be flashed onto the keyboard.
-
 ## **Base Layer**
 ---
 
 Layer 0 - ANSI layout with arrow keys
 
-TASK is used to open task manager (using LCTL(LALT(KC_DEL)) chained together)
-
-2 Function layers represented by FN1, FN2 (shown below)
+Function layer represented by FN1 (Shown below)
 
 ```
  ,-----------------------------------------------------------------------------------------.
@@ -44,9 +26,9 @@ TASK is used to open task manager (using LCTL(LALT(KC_DEL)) chained together)
  |-----------------------------------------------------------------------------------------+
  | Caps    |  A  |  S  |  D  |  F  |  G  |  H  |  J  |  K  |  L  |  ;  |  '  |    Enter    |
  |-----------------------------------------------------------------------------------------+
- | Shift     |  Z  |  X  |  C  |  V  |  B  |  N  |  M  |  ,  |  .  |  /  | FN1 |  U  | TASK|
+ | Shift     |  Z  |  X  |  C  |  V  |  B  |  N  |  M  |  ,  |  .  |  /  | RSft|  U  | DEL |
  |-----------------------------------------------------------------------------------------+
- | Ctrl |  Cmd  |  Alt  |              Space                | Menu | FN2 |  L  |  D  |  R  |
+ | Ctrl |  Cmd  |  Alt  |              Space                | PSCR | FN1 |  L  |  D  |  R  |
  `-----------------------------------------------------------------------------------------'
 ```
 
@@ -58,38 +40,31 @@ Layer 1 - reached by FN1 key
 Contains: 
 - F keys
 - Audio keys
+- RGB underglow settings
+- Key backlight settings
 - Some functionality-based keys
+- RESET
+
 ```
  ,-----------------------------------------------------------------------------------------.
  | ` ~ |  F1 |  F2 |  F3 |  F4 |  F5 |  F6 |  F7 |  F8 |  F9 | F10 | F11 | F12 |           |
  |-----------------------------------------------------------------------------------------+
- |        | Prev| NEXT|     |     |     |     |     |     |     | PGUP| PGDN|     |        |
+ |        | Prev| NEXT|     | RGBT|RGBM+|RGBM-|     |     | BL T| BL+ | BL- |     |        |
  |-----------------------------------------------------------------------------------------+
- |         | VOL+|     |     |     |     |     |     |     |     |     |     |             |
+ |         | VOL+|     |     | HUE+| HUE-| SAT+| SAT-|     |     |     |     |             |
  |-----------------------------------------------------------------------------------------+
- |           | VOL-|     |     |     |     |     |     |     |     |     |TRNS |     |     |
+ |           | VOL-|     |     | VAL+| VAL-| SPD+| SPD-|     |     |     |     | PGUP|     |
  |-----------------------------------------------------------------------------------------+
- |      |       | MUTE |               PLAY                | MYPC |      |     |     |     |
+ | RESET |      | MUTE |               PLAY                | MYPC | TRNS |     | PGDN|     |
  `-----------------------------------------------------------------------------------------'
 ```
-## **Settings Layer**
----
 
-Layer 2 - reached by FN2 key
-Contains:
-- RGB underglow settings
-- Key backlight settings
-- Reset
-```
- ,-----------------------------------------------------------------------------------------.
- |     | RGBT|RGBM+|RGBM-| HUE+| HUE-| SAT+| SAT-| VAL+| VAL-| SPD+| SPD-|     |           |
- |-----------------------------------------------------------------------------------------+
- |        | BL T| BL+ | BL- | BLBR|     |     |     |     |     |     |     |     |        |
- |-----------------------------------------------------------------------------------------+
- |         |     |     |     |     |     |     |     |     |     |     |     |             |
- |-----------------------------------------------------------------------------------------+
- |           |     |     |     |     |     |     |     |     |     |     |     |     |     |
- |-----------------------------------------------------------------------------------------+
- | RESET |      |       |                                   |     | TRNS |     |     |     |
- `-----------------------------------------------------------------------------------------'
-```
+To build:
+
+    make dz60:cpetz16
+
+To build and flash:
+
+    make dz60:cpetz16:dfu
+
+Last Revised: 7/22/2019
