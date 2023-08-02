@@ -31,7 +31,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       _____, KC_MPRV, KC_MNXT, _____, RGB_TOG, RGB_MOD, RGB_RMOD, _____, _____, BL_TOGG, BL_INC, BL_DEC, _____, _____,
       _____, KC_VOLU, _____, _____, RGB_HUI, RGB_HUD, RGB_SAI, RGB_SAD, _____, _____, _____, _____, _____,
       _____, KC_VOLD, _____, _____, RGB_VAI, RGB_VAD, RGB_SPI, RGB_SPD, _____, _____, _____, _____, KC_PGUP, _____,
-      RESET, _____, KC_MUTE, KC_MPLY, KC_MPLY, KC_MPLY, KC_MYCM, KC_TRNS, _____, KC_PGDN, _____
+      RESET, _____, KC_MUTE, KC_MPLY, KC_MPLY, KC_MPLY, KC_MYCM, KC_TRNS, KC_HOME, KC_PGDN, KC_END
       )
 };
 
